@@ -9,7 +9,7 @@ import 'firebase/analytics';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 //import { getAnalytics } from "firebase/analytics";
-//import { async } from '@firebase/util';
+import { async } from '@firebase/util';
 
 firebase.initializeApp({
   apiKey: "AIzaSyA8rjHsVGGywTLajNICgSuy2pd_rklU6s4",
@@ -71,7 +71,7 @@ function SignOut() {
 function ChatRoom() {
   const dummy = useRef();
   const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.orderBy('createdAt').limit();
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 
